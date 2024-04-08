@@ -9,7 +9,7 @@ namespace LAB4
             InitializeComponent();
             ShowInfo();
         }
-
+        // Кнопка для перезаписи значений
         private void btnRefill_Click(object sender, EventArgs e)
         {
             this.animalsList.Clear();
@@ -19,19 +19,20 @@ namespace LAB4
                 switch (rnd.Next() % 3) //Next() возвращает неотрицательное случайное целое число.
                 {
                     case 0:
-                        this.animalsList.Add(new Cows());
+                        this.animalsList.Add(Cows.Generate());
                         break;
                     case 1:
-                        this.animalsList.Add(new Dogs());
+                        this.animalsList.Add(Dogs.Generate());
                         break;
                     case 2:
-                        this.animalsList.Add(new Cats());
+                        this.animalsList.Add(Cats.Generate());
                         break;
                 }
             }
             ShowInfo();
         }
 
+        // Функция выводит информацию о количестве фруктов на форму
         private void ShowInfo()
         {
             int cowsCount = 0;
@@ -54,12 +55,12 @@ namespace LAB4
                 }
             }
 
-            txtInfo.Text = "Крв\tСбк\tКт";
+            txtInfo.Text = "\tКоров\tСобак\tКотов";
             txtInfo.Text += "\n";
-            txtInfo.Text += String.Format("{0}\t{1}\t{2}", cowsCount, dogsCount, catsCount);
+            txtInfo.Text += String.Format("\t{0}\t{1}\t{2}", cowsCount, dogsCount, catsCount);
 
         }
-
+        // Кнопка "Взять"
         private void btnGet_Click(object sender, EventArgs e)
         {
             if(this.animalsList.Count == 0)
@@ -71,18 +72,7 @@ namespace LAB4
              var animal = this.animalsList[0];
              this.animalsList.RemoveAt(0);
 
-            if(animal is Cows)
-            {
-                txtOut.Text = "Корова";
-            }
-            else if(animal is Dogs)
-            {
-                txtOut.Text = "Собака";
-            }
-            else if(animal is Cats)
-            {
-                txtOut.Text = "Кот";
-            }
+             txtOut.Text = animal.GetInfo();
 
             ShowInfo();
         }
