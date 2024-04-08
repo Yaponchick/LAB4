@@ -70,6 +70,7 @@ namespace LAB4
             str += base.GetInfo();
             str += String.Format("\nИгнор хозяина от {0} м", this.ignoringHost);
             str += String.Format("\nДлина хвоста {0} см", this.tailLength);
+            str += String.Format("\nПорода {0}", this.type);
             return str;
         }
         
@@ -117,7 +118,7 @@ namespace LAB4
             {
                 weight = rnd.Next(2, 6),
                 wool = rnd.Next() % 2 == 0,
-                mouseDay = rnd.Next(0, 30) % 101
+                mouseDay = rnd.Next(0, 30)
             };
         }
     }
